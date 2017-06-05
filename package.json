@@ -1,0 +1,33 @@
+{
+  "name": "stagger-upon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nscalf561/StaggerUpon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "hbs": "^4.0.0",
+    "jwt-simple": "^0.5.0",
+    "mocha": "^3.1.2",
+    "mongoose": "^4.4.17",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0",
+    "use-strict": "^1.0.1"
+  },
+  "bugs": {
+    "url": "https://github.com/nscalf561/StaggerUpon/issues"
+  },
+  "homepage": "https://github.com/nscalf561/StaggerUpon#readme"
+}
