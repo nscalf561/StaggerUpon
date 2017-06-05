@@ -31,16 +31,6 @@ router.route('/signup')
 router.route('/authenticate')
   .post(sessionsController.authenticate);
 
-// Projects
-router.route('/api/projects')
-  .get(projectController.entireProjectList)
-  .post(projectController.createProject);
-
-router.route('/api/projects/:id')
-  .get(projectController.getProjectById)
-  .put(projectController.updateProject)
-  .delete(projectController.deleteProject);
-
 // Users
 router.route('/api/users')
   .get(userController.index)
