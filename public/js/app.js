@@ -24,9 +24,3 @@ app.config(["$stateProvider", "$locationProvider", "$urlRouterProvider", ($state
     });
 }]);
 
-app.controller('loginController', function ($scope) {
-  $scope.loginForm = true;
-  $scope.switchForm = function () {
-    $scope.loginForm = $scope.loginForm ? false : true;
-  };
-});

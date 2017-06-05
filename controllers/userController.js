@@ -8,24 +8,7 @@ let userController = {
     let newUser = new User({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
-      role: req.body.role,
-      picture: req.body.picture,
-      about: {
-        picture: req.body.picture,
-        bio: req.body.bio,
-        markets: req.body.markets,
-        education: {
-          schoolName: req.body.schoolName,
-          degree: req.body.degree,
-          graduationYear: req.body.graduationYear
-        }
-      },
-      builderStatus: req.body.builderStatus,
-      investorStatus: req.body.investorStatus,
-      advisorToCompanies: req.body.advisorToCompanies,
-      lookingForFundingSupport: req.body.lookingForFundingSupport,
-      previousInvestments: req.body.previousInvestments
+      password: req.body.password
     });
 
     newUser.save((err) => {
@@ -68,14 +51,6 @@ let userController = {
       if (req.body.name) { user.name = req.body.name; }
       if (req.body.email) { user.email = req.body.email; }
       if (req.body.password) { user.password = req.body.password; } //TODO probably dont do this at all here
-      if (req.body.role) { user.role = req.body.role; }
-      if (req.body.picture) { user.picture = req.body.picture; }
-      if (req.body.bio) { user.bio = req.body.bio; }
-      if (req.body.investorStatus) { user.investorStatus = req.body.investorStatus; }
-      if (req.body.builderStatus) { user.builderStatus = req.body.builderStatus; }
-      //TODO this will require much more logic, when does an investment become previous?
-      if (req.body.previousInvestments) { user.previousInvestments = req.body.previousInvestments; }
-
       User.update({_id: req.params.id}, user, (err, user) => {
         if (err) {
           res.status(500).send(); //TODO propgate error

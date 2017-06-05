@@ -12,7 +12,7 @@ var sessionsController = {
   	} else {
     		var newUser = new User({
       		name: req.body.name,
-          	email: req.body.email,
+        	email: req.body.email,
       		password: req.body.password,
     		});
     	// save the user
@@ -28,10 +28,10 @@ var sessionsController = {
 	authenticate: function (req, res) {
 		User.findOne({
     	email: req.body.email
-  	}, 
+  	},
   	function(err, user) {
     	if (err) throw err;
- 
+
     	if (!user) {
       	res.send({success: false, msg: 'Authentication failed. User not found.'});
     	} else {
@@ -51,4 +51,4 @@ var sessionsController = {
 	},
 };
 
-module.exports = sessionsController;		
+module.exports = sessionsController;

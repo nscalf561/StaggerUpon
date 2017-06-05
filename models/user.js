@@ -16,26 +16,7 @@ let UserSchema = new Schema ({
   password: {
     type: String,
     required: true
-  },
-  role: { //Investor or Entrepreneur
-    type: String
-  },
-  about: {
-    picture: String, //TODO how do you store pictures
-    bio: String,
-    markets: [String],
-    education: [{
-      schoolName: String,
-      degree: String,
-      graduationYear: String,
-    }]
-  },
-  entrepreneurStatus: Boolean,
-  investorStatus: Boolean,
-  //if investor status is true
-  advisorToCompanies: [String], //pointers to companies
-  previousInvestments: [String], //pointers to companies
-  lookingForFundingSupport: Boolean
+  }
 });
 
 UserSchema.pre('save', function (next) {
