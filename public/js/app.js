@@ -16,6 +16,12 @@ app.config(["$stateProvider", "$locationProvider", "$urlRouterProvider", ($state
       url: '/login',
       templateUrl : 'templates/login.html',
       controller : 'loginController'
+    })
+
+    .state('signup', {
+      url: '/signup',
+      templateUrl : 'templates/signup.html',
+      controller : 'signupController'
     });
 
     $locationProvider.html5Mode({
