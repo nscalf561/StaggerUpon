@@ -20,47 +20,15 @@ var userList = [
 	{
 		name: "Jess",
 		email: "jess@gmail.com",
-		password: "GiveMeCheeseOrGiveMeDeath",
-		role: "Investor",
-		about: {
-			picture: "This will need to be a picture",
-			bio: "Here is a string",
-			markets: ["This will likely change", "Why am i a string?"],
-			education: [{
-				schoolName: "Berkeley",
-				degree: "Vagina Doctor",
-				graduationYear: "1642"
-			}]
-		},
-		entrepreneurStatus: false,
-	  investorStatus: true,
-	  //if investor status is true
-	  advisorToCompanies: [],
-	  previousInvestments: [],
-	  lookingForFundingSupport: true
+		number: 5612380928,
+		password: "GiveMeCheeseOrGiveMeDeath"
 	},
 
 	{
 		name: "Caleb",
 		email: "caleb@gmail.com",
-		password: "12345",
-		role: "Investor",
-		about: {
-			picture: "This will need to be a picture",
-			bio: "Here is a string",
-			markets: ["This will likely change", "Why am i a string?"],
-			education: [{
-				schoolName: "Berkeley",
-				degree: "Vagina Doctor",
-				graduationYear: "1642"
-			}]
-		},
-		entrepreneurStatus: false,
-	  investorStatus: true,
-	  //if investor status is true
-	  advisorToCompanies: [],
-	  previousInvestments: [],
-	  lookingForFundingSupport: true
+		number: 1231231234,
+		password: "12345"
 	}
 ];
 

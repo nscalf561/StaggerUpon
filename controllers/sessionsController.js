@@ -7,12 +7,13 @@ var app 		  = require('../server'),
 var sessionsController = {
 
 	signup : function (req, res) {
-		if (!req.body.name || !req.body.password || !req.body.email) {
-    	res.json({success: false, msg: 'Please pass name, email, and password.'});
+		if (!req.body.name || !req.body.password || !req.body.email || !req.body.number) {
+    	res.json({success: false, msg: 'Please pass name, email, number, and password.'});
   	} else {
     		var newUser = new User({
       		name: req.body.name,
         	email: req.body.email,
+          number: req.body.number,
       		password: req.body.password,
     		});
     	// save the user

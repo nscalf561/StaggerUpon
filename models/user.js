@@ -13,6 +13,11 @@ let UserSchema = new Schema ({
     unique: true,
     trim: true //Sanitizes input of whitespace
   },
+  number: {
+    type: Number,
+    required: true,
+    trim: true
+  },
   password: {
     type: String,
     required: true

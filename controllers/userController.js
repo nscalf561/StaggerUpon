@@ -8,6 +8,7 @@ let userController = {
     let newUser = new User({
       name: req.body.name,
       email: req.body.email,
+      number: req.body.number,
       password: req.body.password
     });
 
@@ -50,6 +51,7 @@ let userController = {
       //TODO add sanitization for the updates, ie check if name is a string
       if (req.body.name) { user.name = req.body.name; }
       if (req.body.email) { user.email = req.body.email; }
+      if (req.body.number) { user.number = req.body.number; }
       if (req.body.password) { user.password = req.body.password; } //TODO probably dont do this at all here
       User.update({_id: req.params.id}, user, (err, user) => {
         if (err) {
