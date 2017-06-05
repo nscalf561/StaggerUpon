@@ -1,4 +1,4 @@
-var app = angular.module("AngelProperties", ['ui.router']);
+var app = angular.module("StaggerUpon", ['ui.router']);
 
 app.config(["$stateProvider", "$locationProvider", "$urlRouterProvider", ($stateProvider, $locationProvider, $urlRouterProvider) => {
 
@@ -24,9 +24,9 @@ app.config(["$stateProvider", "$locationProvider", "$urlRouterProvider", ($state
     });
 }]);
 
-app.controller('loginController', ($scope) => {
+app.controller('loginController', function ($scope) {
   $scope.loginForm = true;
-  $scope.switchForm = () => {
+  $scope.switchForm = function () {
     $scope.loginForm = $scope.loginForm ? false : true;
   };
 });
