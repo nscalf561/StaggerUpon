@@ -31,6 +31,9 @@ router.route('/signup')
 router.route('/authenticate')
   .post(sessionsController.authenticate);
 
+router.route('/api/getAllBars')
+  .post(yelpController.getBars);
+
 // Users
 router.route('/api/users')
   .get(userController.index)
