@@ -42,7 +42,9 @@ let barController = {
 
   },
 
+  // We should cache this access token at some point
   getYelpToken : (req, res) => {
+    console.log('here');
     request.post({url: 'https://api.yelp.com/oauth2/token', form: {
       "grant_type": "client_credentials",
       "client_id": secrets.yelp.client_id,
@@ -51,12 +53,11 @@ let barController = {
         if (err) {
           return console.error("Error refreshing Yelp token:", err);
         }
-        if (body.access_token) {
-          console.log("Yelp token successfully refreshed");
-        } else {
-          console.log("No error OR access_token present!");
+        if (body) {
+          body = JSON.parse(body);
+          console.log(body.access_token);
+          return body.access_token;
         }
-        return body.access_token;
       });
   },
 
