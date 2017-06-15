@@ -4,17 +4,19 @@ let app     = require('../server'),
 
 let barController = {
 
+  // The arguments we're getting from the form are: group_size,
+  // distance_from_location, location, and type_of_bar
+  // group_size isn't being used yet
+  // type_of_bar will be used as categories (string)
+  // distance_from_location will be radius (int) in meters
+  // location (string) will be used if latitude (decimal) and longitude (decimal) isn't
+  // we can use a sort_by argument to make the randomization less random and more intelligent
+  // open_now (boolean) and open_at (int) are
   getAllBars : (req, res) => {
-
     // Hit yelp fusion api, /business/search with the parameters
     // locations, radius,
     var queryString = {};
     var bars = [];
-    // The arguments we're getting from the form are: group_size,
-      //distance_from_location, location, and type_of_bar
-    // group_size isn't being used yet
-    // distance_from_location will be radius in meters, so we have to convert
-    //location will be used if latitude and longitude isn't
 
     queryString.term = req.body.term;
     queryString.raidus = req.body.radius;
@@ -36,15 +38,16 @@ let barController = {
         }
         // return pickRandomBar(body.businesses);
         bars = body.businesses;
-        return bars;
+        res.json(bars);
+        // return bars;
       });
 
+    res.json({'here':'test'});
 
   },
 
   // We should cache this access token at some point
   getYelpToken : (req, res) => {
-    console.log('here');
     request.post({url: 'https://api.yelp.com/oauth2/token', form: {
       "grant_type": "client_credentials",
       "client_id": secrets.yelp.client_id,
@@ -55,7 +58,6 @@ let barController = {
         }
         if (body) {
           body = JSON.parse(body);
-          console.log(body.access_token);
           return body.access_token;
         }
       });
