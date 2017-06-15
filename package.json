@@ -24,7 +24,8 @@
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",
     "request": "^2.81.0",
-    "use-strict": "^1.0.1"
+    "use-strict": "^1.0.1",
+    "yelpv3": "^1.2.1"
   },
   "bugs": {
     "url": "https://github.com/nscalf561/StaggerUpon/issues"
