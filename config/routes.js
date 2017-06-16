@@ -32,8 +32,8 @@ router.route('/signup')
 router.route('/authenticate')
   .post(sessionsController.authenticate);
 
-router.route('/api/getAllBars')
-  .post(barsController.getAllBars);
+router.route('/api/getBar')
+  .post(barsController.getRandomBar);
 
 // Users
 router.route('/api/users')
