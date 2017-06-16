@@ -1,8 +1,6 @@
 let app     = require('../server'),
     secrets = require('../secrets'),
-    rp = require('request'),
-    Yelp = require('yelpv3'),
-    tokenHelper = require('../helpers/tokenHelper');
+    Yelp = require('yelpv3');
 
 let barController = {
 
@@ -33,7 +31,7 @@ let barController = {
     }
 
     yelp.search({
-      term: "bar",
+      term: (req.body.term || "bar"),
       radius: queryString.radius,
       longitude: queryString.longitude,
       latitude: queryString.latitude,
