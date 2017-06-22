@@ -4,6 +4,7 @@ let express             = require('express'),
     apiController       = require('../controllers/apiController'),
     userController      = require('../controllers/userController'),
     sessionsController  = require('../controllers/sessionsController'),
+    barsController      = require('../controllers/barsController'),
     mongoose			      = require('mongoose'),
     User				        = mongoose.model('User');
 
@@ -31,8 +32,8 @@ router.route('/signup')
 router.route('/authenticate')
   .post(sessionsController.authenticate);
 
-router.route('/api/getAllBars')
-  .post(yelpController.getBars);
+router.route('/api/getRandomBar')
+  .post(barsController.getRandomBar);
 
 // Users
 router.route('/api/users')

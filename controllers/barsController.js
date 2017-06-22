@@ -1,23 +1,30 @@
-let app     = require('../server'),
-    secrets = require('../secrets'),
-    request = require('request');
+let app       = require('../server'),
+    secrets   = require('../secrets'),
+    Yelp      = require('yelpv3'),
+    barsHelper = require('../helpers/barsHelper');
+
+const YELP_BAR_CATEGORIES = require('../config/YelpBarCategories.json');
 
 let barController = {
 
-  getAllBars : (req, res) => {
-
-    // Hit yelp fusion api, /business/search with the parameters
-    // locations, radius,
+  // The arguments we're getting from the form are: group_size,
+  // distance_from_location, location, and type_of_bar
+  // group_size isn't being used yet
+  // type_of_bar will be used as categories (string)
+  // distance_from_location will be radius (int) in meters
+  // location (string) will be used if latitude (decimal) and longitude (decimal) isn't
+  // we can use a sort_by argument to make the randomization less random and more intelligent
+  // open_now (boolean) and open_at (int) are
+  getRandomBar : (req, res) => {
+    const YELP = new Yelp({
+      app_id: secrets.yelp.client_id,
+      app_secret: secrets.yelp.client_secret
+    });
+    const METERS_PER_MILE = 1609.34;
     var queryString = {};
-    var bars = [];
-    // The arguments we're getting from the form are: group_size,
-      //distance_from_location, location, and type_of_bar
-    // group_size isn't being used yet
-    // distance_from_location will be radius in meters, so we have to convert
-    //location will be used if latitude and longitude isn't
 
     queryString.term = req.body.term;
-    queryString.raidus = req.body.radius;
+    queryString.radius = Math.round(req.body.radius * METERS_PER_MILE);
     // Location is only used if latitude/longitude are not use
     if (req.body.longitude !== undefined && req.body.latitude !== undefined) {
       queryString.latitude = req.body.latitude;
@@ -26,41 +33,33 @@ let barController = {
       queryString.location = req.body.location;
     }
 
-    request.get({url:'https://api.yelp.com/v3/businesses/search',
-      form: queryString,
-      headers: {
-        'Authorization': 'Bearer ' + getYelpToken()
-      }}, function (err, httpResponse, body) {
-        if (err) {
-          return console.error("Error getting the list of bars from Yelp:", err);
-        }
-        // return pickRandomBar(body.businesses);
-        bars = body.businesses;
-        return bars;
-      });
-
-
-  },
-
-  getYelpToken : (req, res) => {
-    request.post({url: 'https://api.yelp.com/oauth2/token', form: {
-      "grant_type": "client_credentials",
-      "client_id": secrets.yelp.client_id,
-      "client_secret": secrets.yelp.client_secret}},
-      function (err, httpResponse, body) {
-        if (err) {
-          return console.error("Error refreshing Yelp token:", err);
-        }
-        if (body.access_token) {
-          console.log("Yelp token successfully refreshed");
-        } else {
-          console.log("No error OR access_token present!");
-        }
-        return body.access_token;
-      });
-  },
-
-  pickRandomBar: (listOfBars) => {
+    // should give option to search by when you're going out --- open_now and open_at
+    // do we want a hot_and_new tag?
+    // how about a price limit?
+    YELP.search({
+      term: (queryString.term || "bar"), // this may be cocktail bars, or whatever
+      radius: queryString.radius,
+      longitude: queryString.longitude,
+      latitude: queryString.latitude,
+      limit:10
+    }).then(function(data) {
+      data = JSON.parse(data);
+      // var businessesArr = Array.from(data.businesses);
+      var businessesLen = data.businesses.length;
+      var ranNum = Math.round(Math.random()* (businessesLen - 1) + 1);
+      var selectedBar = data.businesses[ranNum];
+      var bar = {
+        name: selectedBar.name,
+        image_url: selectedBar.image_url,
+        coordinates: selectedBar.coordinates,
+        location: selectedBar.location,
+        distance: (selectedBar.distance * 1609.34), //this is returned in meters
+        price: selectedBar.price
+      };
+      res.json(bar);
+    }).catch(function(err) {
+      console.error(err);
+    });
 
   }
 
