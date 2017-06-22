@@ -3,6 +3,8 @@ let app       = require('../server'),
     Yelp      = require('yelpv3'),
     barsHelper = require('../helpers/barsHelper');
 
+const YELP_BAR_CATEGORIES = require('../config/YelpBarCategories.json');
+
 let barController = {
 
   // The arguments we're getting from the form are: group_size,

@@ -32,7 +32,7 @@ router.route('/signup')
 router.route('/authenticate')
   .post(sessionsController.authenticate);
 
-router.route('/api/getBar')
+router.route('/api/getRandomBar')
   .post(barsController.getRandomBar);
 
 // Users
