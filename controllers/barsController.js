@@ -15,7 +15,7 @@ let barController = {
   // location (string) will be used if latitude (decimal) and longitude (decimal) isn't
   // we can use a sort_by argument to make the randomization less random and more intelligent
   // open_now (boolean) and open_at (int) are
-  getRandomBar : (req, res) => {
+  findRandomBar : (req, res) => {
     const YELP = new Yelp({
       app_id: secrets.yelp.client_id,
       app_secret: secrets.yelp.client_secret
@@ -56,6 +56,8 @@ let barController = {
         distance: (selectedBar.distance * 1609.34), //this is returned in meters
         price: selectedBar.price
       };
+
+      console.log(barsHelper.createUberDeeplink(bar.coordinates.latitude, bar.coordinates.longitude));
       res.json(bar);
     }).catch(function(err) {
       console.error(err);
