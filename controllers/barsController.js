@@ -41,7 +41,8 @@ let barController = {
       radius: queryString.radius,
       longitude: queryString.longitude,
       latitude: queryString.latitude,
-      limit:10
+      limit:10,
+      open_now: true   // TODO: test more closely to see if this is working, but it seems fine
     }).then(function(data) {
       data = JSON.parse(data);
       // var businessesArr = Array.from(data.businesses);
