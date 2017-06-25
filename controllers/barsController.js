@@ -57,7 +57,7 @@ let barController = {
         price: selectedBar.price
       };
 
-      console.log(barsHelper.createUberDeeplink(bar.coordinates.latitude, bar.coordinates.longitude));
+      bar.uber_link = barsHelper.createUberDeeplink(bar.coordinates.latitude, bar.coordinates.longitude);
       res.json(bar);
     }).catch(function(err) {
       console.error(err);
